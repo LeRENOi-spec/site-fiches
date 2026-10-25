@@ -1,0 +1,94 @@
+/* ===== Base ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --indigo: #4F46E5; --indigo-fonce: #4338CA; --texte: #333; --gris: #666; }
+
+body {
+    font-family: Arial, sans-serif; color: var(--texte); min-height: 100vh;
+    display: flex; justify-content: center; align-items: center; padding: 30px 15px;
+    /* Fond par défaut (mobile, tablette, "réduire les animations") */
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 55%, #312E81 100%) fixed;
+}
+body.admin { background: #f4f4fb; align-items: flex-start; }
+
+/* Fond 3D (chargé seulement sur grand écran, voir fond.php) */
+.spline-background { position: fixed; inset: 0; z-index: -1; }
+spline-viewer { width: 100%; height: 100%; }
+
+/* ===== Cartes ===== */
+.connexion, .accueil, .fiche, .merci, .page {
+    background: rgba(255,255,255,.9); padding: 30px; border-radius: 12px; width: 100%;
+    box-shadow: 0 8px 32px rgba(0,0,0,.15); backdrop-filter: blur(8px);
+}
+.connexion { max-width: 400px; }
+.accueil, .fiche { max-width: 640px; }
+.fiche { background: rgba(255,255,255,.95); }
+.merci { max-width: 480px; text-align: center; }
+.page { max-width: 900px; background: #fff; backdrop-filter: none; box-shadow: 0 8px 32px rgba(0,0,0,.08); }
+
+h1 { margin-bottom: 8px; color: var(--texte); }
+.connexion h1, .accueil h1 { text-align: center; }
+.connexion h1 { margin-bottom: 20px; }
+.intro { color: var(--gris); margin-bottom: 24px; }
+.accueil .intro { text-align: center; }
+a { color: var(--indigo); }
+.retour { display: inline-block; margin-bottom: 16px; font-size: 14px; text-decoration: none; }
+.retour:hover { text-decoration: underline; }
+
+/* ===== Formulaires ===== */
+label { display: block; font-weight: bold; margin-bottom: 6px; font-size: 14px; }
+input, select, textarea {
+    width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid #ccc;
+    border-radius: 6px; font-size: 16px; font-family: inherit; background: #fff;
+}
+textarea { min-height: 100px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--indigo); border-color: transparent; }
+button, input[type="submit"], .bouton {
+    display: block; width: 100%; padding: 14px; background: var(--indigo); color: #fff; border: none;
+    border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none;
+    transition: background .3s ease;
+}
+button:hover, input[type="submit"]:hover, .bouton:hover { background: var(--indigo-fonce); }
+.piege { position: absolute; left: -9999px; }
+.erreur { color: #b91c1c; margin-bottom: 15px; text-align: center; }
+
+/* Sections numérotées des fiches */
+.fiche { counter-reset: etape; }
+.fiche h2 {
+    display: flex; align-items: center; gap: 10px; font-size: 18px;
+    margin: 24px 0 14px; padding-top: 16px; border-top: 1px solid #eee;
+}
+.fiche h2::before {
+    counter-increment: etape; content: counter(etape);
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--indigo); color: #fff; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* ===== Accueil ===== */
+.choix { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.choix a { display: block; padding: 18px; background: #fff; border: 1px solid #ddd; border-radius: 8px; text-decoration: none; color: var(--texte); transition: border-color .2s, background .2s; }
+.choix a:hover, .choix a:focus-visible { border-color: var(--indigo); background: #f5f4ff; outline: none; }
+.choix strong { display: block; color: var(--indigo); margin-bottom: 6px; font-size: 17px; }
+.choix span { font-size: 14px; color: var(--gris); }
+
+/* ===== Confirmation ===== */
+.coche { width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 50%; background: #16a34a; color: #fff; font-size: 34px; display: flex; align-items: center; justify-content: center; }
+.merci h1 { color: var(--indigo); margin-bottom: 12px; }
+.merci p { color: #555; line-height: 1.5; margin-bottom: 24px; }
+
+/* ===== Espace admin ===== */
+.page header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 12px; }
+.page h2 { margin-top: 28px; padding-top: 16px; border-top: 1px solid #eee; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+.vide { color: var(--gris); padding: 20px 0; }
+dl { margin-top: 16px; }
+dt { font-weight: bold; margin-top: 14px; font-size: 14px; color: #555; }
+dd { margin-top: 4px; white-space: pre-wrap; }
+
+/* ===== Mobile ===== */
+@media (max-width: 480px) {
+    .connexion, .accueil, .fiche, .merci, .page { padding: 22px 18px; }
+    .choix { grid-template-columns: 1fr; }
+}

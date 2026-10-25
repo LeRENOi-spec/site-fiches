@@ -1,0 +1,10 @@
+# Identifiants de la base de données : ne jamais publier
+db.php
+
+# Fichiers de l'éditeur et du système
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Script à usage unique (création du compte admin)
+creer_admin.php
